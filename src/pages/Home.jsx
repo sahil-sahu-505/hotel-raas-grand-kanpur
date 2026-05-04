@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import ScrollReveal from '../components/ScrollReveal'
 import { Wifi, Car, Coffee, Utensils, Users, Clock, Star, Award, Heart, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { hotelData } from '../config/hotelData'
@@ -31,13 +32,15 @@ const Home = () => {
             {features.map((feature, index) => {
               const Icon = feature.icon
               return (
-                <div key={index} className="text-center group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-                    <Icon className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
+                <ScrollReveal key={index} delay={index * 0.1}>
+                  <div className="text-center group">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
+                      <Icon className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
+                    </div>
+                    <h3 className="font-semibold text-dark mb-1">{feature.title}</h3>
+                    <p className="text-sm text-gray-600">{feature.desc}</p>
                   </div>
-                  <h3 className="font-semibold text-dark mb-1">{feature.title}</h3>
-                  <p className="text-sm text-gray-600">{feature.desc}</p>
-                </div>
+                </ScrollReveal>
               )
             })}
           </div>
@@ -48,32 +51,36 @@ const Home = () => {
       <section className="py-20 bg-gradient-to-br from-cream to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6">
-                Welcome to Hotel Raas Grand
-              </h2>
-              <p className="text-lg text-gray-700 mb-4">
-                Nestled in the heart of Kanpur's prestigious Civil Lines, Hotel Raas Grand stands as a beacon of luxury and tradition. 
-                For over three decades, we have been the preferred choice for discerning travelers and event planners.
-              </p>
-              <p className="text-lg text-gray-700 mb-6">
-                Our commitment to excellence is reflected in every aspect of our service - from our elegantly appointed rooms 
-                to our grand banquet halls that have hosted countless memorable celebrations.
-              </p>
-              <Link
-                to="/about"
-                className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
-              >
-                Discover Our Story
-              </Link>
-            </div>
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="https://htlimages.brevistay.com/4043/20260114/1.jpg"
-                alt="Hotel Exterior"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <ScrollReveal direction="left">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6">
+                  Welcome to Hotel Raas Grand
+                </h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Nestled in the heart of Kanpur's prestigious Civil Lines, Hotel Raas Grand stands as a beacon of luxury and tradition. 
+                  For over three decades, we have been the preferred choice for discerning travelers and event planners.
+                </p>
+                <p className="text-lg text-gray-700 mb-6">
+                  Our commitment to excellence is reflected in every aspect of our service - from our elegantly appointed rooms 
+                  to our grand banquet halls that have hosted countless memorable celebrations.
+                </p>
+                <Link
+                  to="/about"
+                  className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
+                >
+                  Discover Our Story
+                </Link>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="right" delay={0.2}>
+              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="https://htlimages.brevistay.com/4043/20260114/1.jpg"
+                  alt="Hotel Exterior"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -81,44 +88,49 @@ const Home = () => {
       {/* Rooms Preview */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-              Luxury Rooms & Suites
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our selection of elegantly designed rooms and suites
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
+                Luxury Rooms & Suites
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose from our selection of elegantly designed rooms and suites
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {hotelData.roomTypes.map((room) => (
-              <div key={room.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={room.images[0]}
-                    alt={room.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full font-semibold">
-                    From {room.price}
+            {hotelData.roomTypes.map((room, index) => (
+              <ScrollReveal key={room.id} delay={index * 0.15}>
+                <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={room.images[0]}
+                      alt={room.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full font-semibold">
+                      From {room.price}
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-serif font-bold text-dark mb-2">{room.name}</h3>
+                    <p className="text-gray-600 mb-4">{room.description}</p>
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <span>{room.capacity}</span>
+                      <span>{room.size}</span>
+                    </div>
+                    <Link
+                      to="/rooms"
+                      className="block text-center bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
+                    >
+                      View Details
+                    </Link>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-serif font-bold text-dark mb-2">{room.name}</h3>
-                  <p className="text-gray-600 mb-4">{room.description}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <span>{room.capacity}</span>
-                    <span>{room.size}</span>
-                  </div>
-                  <Link
-                    to="/rooms"
-                    className="block text-center bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
+          </div>
           </div>
 
           <div className="text-center mt-12">
