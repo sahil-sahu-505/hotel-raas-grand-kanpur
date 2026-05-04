@@ -4,22 +4,26 @@ import ReviewsCarousel from '../components/ReviewsCarousel'
 import { Wifi, Car, Coffee, Utensils, Users, Clock, Star, Award, Heart, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { hotelData } from '../config/hotelData'
+import { useLanguage } from '../context/LanguageContext'
+import { t } from '../translations/translations'
 
 const Home = () => {
+  const { language } = useLanguage()
+
   const features = [
-    { icon: Wifi, title: "Free Wi-Fi", desc: "High-speed internet throughout" },
-    { icon: Car, title: "Free Parking", desc: "Secure parking for guests" },
-    { icon: Utensils, title: "Restaurant", desc: "Fine dining experience" },
-    { icon: Users, title: "Banquet Halls", desc: "Grand event venues" },
-    { icon: Clock, title: "24/7 Service", desc: "Round-the-clock assistance" },
-    { icon: Coffee, title: "Room Service", desc: "In-room dining available" }
+    { icon: Wifi, title: t('freeWifi', language), desc: t('freeWifiDesc', language) },
+    { icon: Car, title: t('freeParking', language), desc: t('freeParkingDesc', language) },
+    { icon: Utensils, title: t('restaurant', language), desc: t('restaurantDesc', language) },
+    { icon: Users, title: t('banquetHalls', language), desc: t('banquetHallsDesc', language) },
+    { icon: Clock, title: t('service247', language), desc: t('service247Desc', language) },
+    { icon: Coffee, title: t('roomService', language), desc: t('roomServiceDesc', language) }
   ]
 
   const highlights = [
-    { icon: Star, title: "Premium Rooms", desc: "Luxury accommodation with modern amenities" },
-    { icon: Award, title: "Grand Banquets", desc: "Perfect venues for weddings & events" },
-    { icon: Heart, title: "Exceptional Service", desc: "Dedicated staff for your comfort" },
-    { icon: Shield, title: "Safe & Secure", desc: "24/7 security for peace of mind" }
+    { icon: Star, title: t('premiumRooms', language), desc: t('premiumRoomsDesc', language) },
+    { icon: Award, title: t('grandBanquets', language), desc: t('grandBanquetsDesc', language) },
+    { icon: Heart, title: t('exceptionalService', language), desc: t('exceptionalServiceDesc', language) },
+    { icon: Shield, title: t('safeSecurity', language), desc: t('safeSecurityDesc', language) }
   ]
 
   return (
@@ -55,21 +59,25 @@ const Home = () => {
             <ScrollReveal direction="left">
               <div>
                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6">
-                  Welcome to Hotel Raas Grand
+                  {t('welcomeTitle', language)}
                 </h2>
                 <p className="text-lg text-gray-700 mb-4">
-                  Nestled in the heart of Kanpur's prestigious Civil Lines, Hotel Raas Grand stands as a beacon of luxury and tradition. 
-                  For over three decades, we have been the preferred choice for discerning travelers and event planners.
+                  {language === 'en' 
+                    ? "Nestled in the heart of Kanpur's prestigious Civil Lines, Hotel Raas Grand stands as a beacon of luxury and tradition. For over three decades, we have been the preferred choice for discerning travelers and event planners."
+                    : "कानपुर की प्रतिष्ठित सिविल लाइन्स के दिल में स्थित, होटल रास ग्रैंड लक्जरी और परंपरा का प्रतीक है। तीन दशकों से अधिक समय से, हम समझदार यात्रियों और इवेंट प्लानर्स की पसंदीदा पसंद रहे हैं।"
+                  }
                 </p>
                 <p className="text-lg text-gray-700 mb-6">
-                  Our commitment to excellence is reflected in every aspect of our service - from our elegantly appointed rooms 
-                  to our grand banquet halls that have hosted countless memorable celebrations.
+                  {language === 'en'
+                    ? "Our commitment to excellence is reflected in every aspect of our service - from our elegantly appointed rooms to our grand banquet halls that have hosted countless memorable celebrations."
+                    : "उत्कृष्टता के प्रति हमारी प्रतिबद्धता हमारी सेवा के हर पहलू में परिलक्षित होती है - हमारे सुरुचिपूर्ण ढंग से सुसज्जित कमरों से लेकर हमारे भव्य बैंक्वेट हॉल तक जिन्होंने अनगिनत यादगार समारोहों की मेजबानी की है।"
+                  }
                 </p>
                 <Link
                   to="/about"
                   className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
                 >
-                  Discover Our Story
+                  {t('discoverStory', language)}
                 </Link>
               </div>
             </ScrollReveal>
@@ -92,10 +100,10 @@ const Home = () => {
           <ScrollReveal>
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-                Luxury Rooms & Suites
+                {t('luxuryRooms', language)}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Choose from our selection of elegantly designed rooms and suites
+                {t('luxuryRoomsDesc', language)}
               </p>
             </div>
           </ScrollReveal>
@@ -111,7 +119,7 @@ const Home = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full font-semibold">
-                      From {room.price}
+                      {t('from', language)} {room.price}
                     </div>
                   </div>
                   <div className="p-6">
@@ -125,7 +133,7 @@ const Home = () => {
                       to="/rooms"
                       className="block text-center bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
                     >
-                      View Details
+                      {t('viewDetails', language)}
                     </Link>
                   </div>
                 </div>
@@ -138,7 +146,7 @@ const Home = () => {
               to="/rooms"
               className="inline-block border-2 border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition-all font-semibold"
             >
-              View All Rooms
+              {t('viewAllRooms', language)}
             </Link>
           </div>
         </div>
@@ -149,10 +157,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-              Grand Banquet Facilities
+              {t('grandBanquet', language)}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Host your dream wedding or corporate event in our magnificent halls
+              {t('grandBanquetDesc', language)}
             </p>
           </div>
 
@@ -170,14 +178,14 @@ const Home = () => {
                   <h3 className="text-3xl font-serif font-bold text-dark mb-3">{hall.name}</h3>
                   <p className="text-gray-600 mb-4">{hall.description}</p>
                   <div className="flex items-center space-x-6 text-sm text-gray-500 mb-4">
-                    <span className="font-semibold">Capacity: {hall.capacity}</span>
-                    <span>Area: {hall.area}</span>
+                    <span className="font-semibold">{t('capacity', language)}: {hall.capacity}</span>
+                    <span>{t('area', language)}: {hall.area}</span>
                   </div>
                   <Link
                     to="/banquet"
                     className="inline-block bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all font-semibold"
                   >
-                    Explore Venue
+                    {t('exploreVenue', language)}
                   </Link>
                 </div>
               </div>
@@ -192,7 +200,7 @@ const Home = () => {
           <ScrollReveal>
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-                Why Choose Hotel Raas Grand?
+                {t('whyChoose', language)}
               </h2>
             </div>
           </ScrollReveal>
@@ -222,10 +230,10 @@ const Home = () => {
           <ScrollReveal>
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-                What Our Guests Say
+                {t('guestReviews', language)}
               </h2>
               <p className="text-xl text-gray-600">
-                Real experiences from our valued guests
+                {t('guestReviewsDesc', language)}
               </p>
             </div>
           </ScrollReveal>
@@ -243,16 +251,16 @@ const Home = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Ready to Experience Luxury?
+            {t('readyToExperience', language)}
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Book your stay today and discover why Hotel Raas Grand is Kanpur's premier choice for luxury accommodation
+            {t('readyToExperienceDesc', language)}
           </p>
           <Link
             to="/contact"
             className="inline-block bg-white text-primary px-10 py-4 rounded-lg hover:shadow-2xl transition-all font-bold text-lg"
           >
-            Book Now
+            {t('bookNow', language)}
           </Link>
         </div>
       </section>

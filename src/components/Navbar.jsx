@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, Mail } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
 import { hotelData } from '../config/hotelData'
+import LanguageSwitcher from './LanguageSwitcher'
+import { useLanguage } from '../context/LanguageContext'
+import { t } from '../translations/translations'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { language } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,13 +26,13 @@ const Navbar = () => {
   }, [location])
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/rooms', label: 'Rooms & Suites' },
-    { href: '/banquet', label: 'Banquet & Events' },
-    { href: '/restaurant', label: 'Dining' },
-    { href: '/gallery', label: 'Gallery' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/', label: t('home', language) },
+    { href: '/about', label: t('about', language) },
+    { href: '/rooms', label: t('rooms', language) },
+    { href: '/banquet', label: t('banquet', language) },
+    { href: '/restaurant', label: t('restaurant', language) },
+    { href: '/gallery', label: t('gallery', language) },
+    { href: '/contact', label: t('contact', language) }
   ]
 
   return (
@@ -44,12 +48,14 @@ const Navbar = () => {
             </div>
             <div>
               <h1 className="text-xl font-serif font-bold text-dark">Hotel Raas Grand</h1>
-              <p className="text-xs text-primary font-medium">Luxury & Tradition</p>
+              <p className="text-xs text-primary font-medium">
+                {language === 'en' ? 'Luxury & Tradition' : 'लक्जरी और परंपरा'}
+              </p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -67,6 +73,7 @@ const Navbar = () => {
 
           {/* Right Side Actions */}
           <div className="hidden lg:flex items-center space-x-4">
+            <LanguageSwitcher />
             <a
               href={`tel:${hotelData.locations[0].phone}`}
               className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors"
@@ -78,7 +85,7 @@ const Navbar = () => {
               to="/contact"
               className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium"
             >
-              Book Now
+              {t('bookNow', language)}
             </Link>
           </div>
 
@@ -108,6 +115,9 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="pt-4 border-t space-y-3">
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
               <a
                 href={`tel:${hotelData.locations[0].phone}`}
                 className="flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium"
@@ -119,7 +129,7 @@ const Navbar = () => {
                 to="/contact"
                 className="block text-center bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg font-medium"
               >
-                Book Now
+                {t('bookNow', language)}
               </Link>
             </div>
           </div>
