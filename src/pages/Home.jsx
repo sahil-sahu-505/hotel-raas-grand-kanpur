@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'
 import ScrollReveal from '../components/ScrollReveal'
+import ReviewsCarousel from '../components/ReviewsCarousel'
 import { Wifi, Car, Coffee, Utensils, Users, Clock, Star, Award, Heart, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { hotelData } from '../config/hotelData'
@@ -131,7 +132,6 @@ const Home = () => {
               </ScrollReveal>
             ))}
           </div>
-          </div>
 
           <div className="text-center mt-12">
             <Link
@@ -189,26 +189,50 @@ const Home = () => {
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
-              Why Choose Hotel Raas Grand?
-            </h2>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
+                Why Choose Hotel Raas Grand?
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {highlights.map((item, index) => {
               const Icon = item.icon
               return (
-                <div key={index} className="text-center p-6 rounded-2xl hover:bg-cream transition-colors">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full mb-4">
-                    <Icon className="w-10 h-10 text-white" />
+                <ScrollReveal key={index} delay={index * 0.1}>
+                  <div className="text-center p-6 rounded-2xl hover:bg-cream transition-colors">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full mb-4">
+                      <Icon className="w-10 h-10 text-white" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-dark mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.desc}</p>
                   </div>
-                  <h3 className="text-xl font-serif font-bold text-dark mb-2">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
-                </div>
+                </ScrollReveal>
               )
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Guest Reviews */}
+      <section className="py-20 bg-gradient-to-br from-cream to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">
+                What Our Guests Say
+              </h2>
+              <p className="text-xl text-gray-600">
+                Real experiences from our valued guests
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <ReviewsCarousel />
+          </ScrollReveal>
         </div>
       </section>
 
