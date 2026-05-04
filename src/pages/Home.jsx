@@ -1,6 +1,9 @@
 import Hero from '../components/Hero'
 import ScrollReveal from '../components/ScrollReveal'
 import ReviewsCarousel from '../components/ReviewsCarousel'
+import VideoGallery from '../components/VideoGallery'
+import InstagramFeed from '../components/InstagramFeed'
+import Virtual360Viewer from '../components/Virtual360Viewer'
 import { Wifi, Car, Coffee, Utensils, Users, Clock, Star, Award, Heart, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { hotelData } from '../config/hotelData'
@@ -243,6 +246,15 @@ const Home = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Video Gallery */}
+      <VideoGallery />
+
+      {/* Virtual 360 Tour */}
+      <Virtual360Viewer />
+
+      {/* Instagram Feed */}
+      <InstagramFeed />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-accent text-white relative overflow-hidden">
